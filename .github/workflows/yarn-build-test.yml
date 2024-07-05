@@ -1,31 +1,33 @@
-name: Yarn Build and Test
+name: Build and Test Angular App
 
 on:
   push:
     branches:
-      - main # Trigger workflow on push to main branch
+      - main
   pull_request:
     branches:
-      - main # Trigger workflow on pull requests to main branch
+      - main
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up Node.js environment
+      - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "14" # Use the Node.js version required by your project
+          node-version: "14" # Set the Node.js version (adjust as needed)
 
       - name: Install Dependencies
-        run: yarn install
+        run: |
+          npm install -g @angular/cli@latest
+          npm install
 
-      - name: Build Application
-        run: yarn build
+      - name: Build Angular Application
+        run: ng build --configuration=production
 
       - name: Run Tests
-        run: yarn test
+        run: ng test --watch=false --no-progress --browsers=ChromeHeadless
