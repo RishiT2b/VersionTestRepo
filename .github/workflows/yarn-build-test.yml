@@ -27,8 +27,11 @@ jobs:
       - name: Install Angular CLI with Yarn
         run: yarn global add @angular/cli@latest
 
-      - name: Install Dependencies
-        run: yarn install
+      - name: Clear Cache and Reinstall Dependencies
+        run: |
+          npm cache clean --force
+          rm -rf node_modules
+          yarn install
 
       - name: Build Angular Application
         run: ng build --configuration=production
