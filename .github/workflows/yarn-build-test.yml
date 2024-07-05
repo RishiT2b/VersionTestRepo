@@ -1,0 +1,31 @@
+name: Yarn Build and Test
+
+on:
+  push:
+    branches:
+      - main # Trigger workflow on push to main branch
+  pull_request:
+    branches:
+      - main # Trigger workflow on pull requests to main branch
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14" # Use the Node.js version required by your project
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Build Application
+        run: yarn build
+
+      - name: Run Tests
+        run: yarn test
