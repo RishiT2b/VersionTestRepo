@@ -23,8 +23,8 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm install -g @angular/cli@latest
-          npm install
+          yarn install -g @angular/cli@latest
+          yarn install
 
       - name: Build Angular Application
         run: ng build --configuration=production
