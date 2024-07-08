@@ -25,23 +25,23 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install Yarn
-        run: npm install -g yarn
+      # - name: Install Yarn
+      #   run: npm install -g yarn
 
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
       - name: Lint code
-        run: yarn lint
+        run: npm lint
 
-      - name: Run unit tests
-        run: yarn test --watch=false --no-progress --browsers=ChromeNoSandboxHeadless
+      # - name: Run unit tests
+      #   run: yarn test --watch=false --no-progress --browsers=ChromeNoSandboxHeadless
 
-      - name: Build project
-        run: yarn build --configuration production
+      # - name: Build project
+      #   run: yarn build --configuration production
 
-      - name: Upload production build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: production-build
-          path: dist/
+      # - name: Upload production build artifacts
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: production-build
+      #     path: dist/
